@@ -126,7 +126,7 @@
 
         // для интеграционного тестирования
         //  тестовая версия WorkTimeSpan с подменой ввода/вывода
-        internal static void WorkTimeSpanForTest(
+        public static void WorkTimeSpanForTest(
             Func<string?> readLine,
             Action<string?> writeLine)
         {
@@ -163,7 +163,7 @@
         
         //тестовая версия DateDirthday с подменой ввода/вывода
         
-        internal static void DateDirthdayForTest(
+        public static void DateDirthdayForTest(
             Func<string?> readLine,
             Action<string?> writeLine)
         {
