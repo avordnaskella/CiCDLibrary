@@ -124,5 +124,112 @@
             }
         }
 
+        // для интеграционного тестирования
+        //  тестовая версия WorkTimeSpan с подменой ввода/вывода
+        internal static void WorkTimeSpanForTest(
+            Func<string?> readLine,
+            Action<string?> writeLine)
+        {
+            writeLine("Введите количество часов");
+            string? hours = readLine();
+
+            writeLine("Введите количество минут");
+            string? minutes = readLine();
+
+            writeLine("Введите количество секунд");
+            string? seconds = readLine();
+
+            DateTime dateTimeNow = DateTime.Now;
+
+            if (int.TryParse(hours, out int x) &&
+                int.TryParse(minutes, out int y) &&
+                int.TryParse(seconds, out int z))
+            {
+                writeLine("+ TimeSpan");
+                TimeSpan timeSpan = new TimeSpan(x, y, z);
+                DateTime dateTimeNow2 = dateTimeNow + timeSpan;
+                writeLine(dateTimeNow2.ToString());
+
+                writeLine("- TimeSpan");
+                DateTime dateTimeNow22 = dateTimeNow - timeSpan;
+                writeLine(dateTimeNow22.ToString());
+            }
+            else
+            {
+                writeLine("Вы ввели не целое число или вообще не число");
+            }
+        }
+
+        
+        //тестовая версия DateDirthday с подменой ввода/вывода
+        
+        internal static void DateDirthdayForTest(
+            Func<string?> readLine,
+            Action<string?> writeLine)
+        {
+            writeLine("Введите ваш год рождения");
+            string? yearBirth = readLine();
+
+            writeLine("Введите ваш месяц рождения");
+            string? monthBirth = readLine();
+
+            writeLine("Введите ваш день рождения");
+            string? dayBirth = readLine();
+
+            if (int.TryParse(yearBirth, out int x) &&
+                int.TryParse(monthBirth, out int y) &&
+                int.TryParse(dayBirth, out int z))
+            {
+                if (x < 1900 || x > DateTime.Today.Year)
+                {
+                    writeLine("Вы ввели не целое число или вообще не число или ваши данные о дате рождения некорректны");
+                    return;
+                }
+
+                try
+                {
+                    DateTime today = DateTime.Today;
+                    DateTime myDay = new DateTime(x, y, z);
+
+                    if (myDay > today)
+                    {
+                        writeLine("Вы ввели не целое число или вообще не число или ваши данные о дате рождения некорректны");
+                        return;
+                    }
+
+                    int age = today.Year - myDay.Year;
+
+                    int month = today.Month - myDay.Month;
+                    if (month < 0)
+                    {
+                        age = age - 1;
+                        month = 12 + month;
+                    }
+
+                    int day = today.Day - myDay.Day;
+                    if (day < 0)
+                    {
+                        month = month - 1;
+                        if (month < 0)
+                        {
+                            month = 11;
+                            age--;
+                        }
+                        day = DateTime.DaysInMonth(myDay.Year, myDay.Month) + day;
+                    }
+
+                    writeLine($"{age} лет {month} месяцев {day} дней");
+                }
+                catch
+                {
+                    writeLine("Вы ввели не целое число или вообще не число или ваши данные о дате рождения некорректны");
+                }
+            }
+            else
+            {
+                writeLine("Вы ввели не целое число или вообще не число или ваши данные о дате рождения некорректны");
+            }
+        }
+
     }
 }

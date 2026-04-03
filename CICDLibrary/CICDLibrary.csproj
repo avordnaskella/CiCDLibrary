@@ -4,6 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	
+	<PackageId>Aleksandrova.CiCDLibrary</PackageId>
+	<Version>1.0.1</Version>
+	<Authors>AleksandrovaAA</Authors>
+	<Description>Библиотка для работой с датой и временем</Description>
+	<RepositoryUrl>https://github.com/avordnaskella/CiCDLibrary</RepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+
   </PropertyGroup>
 
 </Project>
